@@ -1,0 +1,219 @@
+<!--slider area start-->
+<section class="slider_section s_section_two mb-75">
+    <div class="slider_area slider_carousel owl-carousel">
+        <div class="single_slider d-flex align-items-center" data-bgimg="https://theme.hstatic.net/200000000133/1000569834/14/slideshow_1.jpg?v=5057"></div>
+        <div class="single_slider d-flex align-items-center" data-bgimg="assets/images/Slides/slide_4.png"></div>
+        <div class="single_slider d-flex align-items-center" data-bgimg="assets/images/Slides/slide_5.png"></div>
+    </div>
+</section>
+<!--slider area end-->
+
+<!--banner area start-->
+<div class="banner_area mb-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <figure class="single_banner">
+                    <div class="banner_thumb">
+                        <a href="shop.html"><img
+                                src="https://theme.hstatic.net/200000000133/1000569834/14/home3banner_1.jpg?v=5057"
+                                alt=""></a>
+                    </div>
+                </figure>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <figure class="single_banner">
+                    <div class="banner_thumb">
+                        <a href="shop.html">
+                            <img src="https://theme.hstatic.net/200000000133/1000569834/14/home3banner_2.jpg?v=5057"
+                                alt="">
+                        </a>
+                    </div>
+                </figure>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <figure class="single_banner">
+                    <div class="banner_thumb">
+                        <a href="shop.html"><img
+                                src="https://theme.hstatic.net/200000000133/1000569834/14/home3banner_3.jpg?v=5057"
+                                alt=""></a>
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+<!--banner area end-->
+
+<!--home section bg area start-->
+<div class="home_section_bg">
+    <!--product area start-->
+    <div class="product_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title">
+                        <h2>Thời trang Kyen</h2>
+                    </div>
+                    <div class="product_tab_btn">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#Sellers" role="tab"
+                                    aria-controls="Sellers" aria-selected="true">
+                                    Sản phẩm bán chạy
+                                </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#Arrivals" role="tab" aria-controls="Arrivals"
+                                    aria-selected="false">
+                                    Sản phẩm mới nhất
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane fade" id="Sellers" role="tabpanel">
+                    <div class="row">
+                        <div class="product_carousel product_column5 owl-carousel">
+                            <div class="col-lg-3" *ngFor="let product of productsSalest">
+                                <div class="product_items">
+                                    <article class="single_product">
+                                        <figure>
+                                            <div class="product_thumb">
+                                                <a class="primary_img" [routerLink]="['detail/', product.id]"><img
+                                                        src="assets/{{ product.avatarImage }}" alt=""></a>
+                                                <a class="secondary_img" [routerLink]="['detail/', product.id]"><img
+                                                        src="assets/{{ product.avatarImage }}" alt=""></a>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="product_content_inner">
+                                                    <h4 class="product_name"><a [routerLink]="['detail/', product.id]">{{ product.name }}</a></h4>
+                                                    <div class="price_box">
+                                                        <!-- <span class="old_price">1.020.000đ</span> -->
+                                                        <span class="current_price">{{ product.price }}VND</span>
+                                                    </div>
+                                                </div>
+                                                <div class="action_links">
+                                                    <ul>
+                                                        <li class="add_to_cart">
+                                                            <a href="cart.html">Thêm vào giỏ
+                                                                hàng</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Arrivals" role="tabpanel">
+                    <div class="row">
+                        <div class="product_carousel product_column5 owl-carousel">
+                            <div class="col-lg-3" *ngFor="let product of productsLatest">
+                                <div class="product_items">
+                                    <article class="single_product">
+                                        <figure>
+                                            <div class="product_thumb">
+                                                <a class="primary_img" [routerLink]="['detail/', product.id]"><img
+                                                        src="assets/{{ product.avatarImage }}" alt=""></a>
+                                                <a class="secondary_img" [routerLink]="['detail/', product.id]"><img
+                                                        src="assets/{{ product.avatarImage }}" alt=""></a>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="product_content_inner">
+                                                    <h4 class="product_name"><a [routerLink]="['detail/', product.id]">{{ product.name }}</a></h4>
+                                                    <div class="price_box">
+                                                        <!-- <span class="old_price">1.020.000đ</span> -->
+                                                        <span class="current_price">{{ product.price }}VND</span>
+                                                    </div>
+                                                </div>
+                                                <div class="action_links">
+                                                    <ul>
+                                                        <li class="add_to_cart">
+                                                            <a href="cart.html">Thêm vào giỏ
+                                                                hàng</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </article>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--product area end-->
+
+    <!--news area start-->
+    <div class="product_area product_deals">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title mb-35">
+                        <h2>Tin tức Kyen</h2>
+                        <p> <a>Xem tất cả </a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="product_deals_container">
+                <div class="row">
+                    <div class="product_carousel product_column2 owl-carousel">
+                        <div class="col-lg-3" *ngFor="let item of news">
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" [routerLink]="['news/detail/', item.id]">
+                                            <img src="assets/{{ item.image }}" alt="news5">
+                                        </a>
+                                    </div>
+                                    <div class="product_content">
+                                        <p class="news_title"><a href="#">{{item.heading}}</a></p>
+                                        <div class="product_desc">
+                                            <p>{{item.description}}</p>
+                                            <!-- <a class="event-btn btn" href="#">Xem thêm <i
+                                                    class="fa fa-long-arrow-right events-btn-icon"></i></a> -->
+                                        </div>
+                                        <div class="news_border"></div>
+                                    </div>
+                                </figure>
+                            </article>
+                        </div>
+                        <!-- <div class="col-lg-3">
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="product-countdown.html"><img
+                                                src="assets/images/News/1619676235.jpg" alt=""></a>
+                                    </div>
+                                    <div class="product_content">
+                                        <p class="news_title"><a href="#">DDDDDSD đẹp dịu dàng trong trang phục
+                                                của Kyen</a></p>
+                                        <div class="product_desc">
+                                            <p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et
+                                                mattis vulputate, tristique ut lectus. Sed et lorem .. Lorem, ipsum
+                                                dolor sit amet consectetur adipisicing eli
+                                                t. Ad ut suscipit laborum ullam nemo porro harum possimus assumenda
+                                                non impedit. In, error? Aperiam providen.</p>
+                                        </div>
+                                        <div class="news_border"></div>
+                                    </div>
+                                </figure>
+                            </article>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--product area end-->

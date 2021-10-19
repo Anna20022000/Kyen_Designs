@@ -1,0 +1,154 @@
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a [routerLink]="''">Trang chủ</a></li>
+                        <li>Tất cả sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<!--shop  area start-->
+<div class="shop_area shop_reverse">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <!--sidebar widget start-->
+                <aside class="sidebar_widget">
+                    <div class="widget_list widget_categories">
+                        <h3>Danh mục sản phẩm</h3>
+                        <ul>
+                            <li *ngFor="let cat of categories"><a [routerLink]="['/list', cat.id]">{{ cat.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget_list widget_filter">
+                        <h3>Khoảng giá</h3>
+                        <form action="#">
+                            <div id="slider-range"></div>
+                            <button type="submit">Tìm kiếm</button>
+                            <input type="text" name="text" id="amount" />
+
+                        </form>
+                    </div>
+                    <div class="widget_list widget_categories">
+                        <h3>Trang phục theo mùa</h3>
+                        <ul>
+                            <li>
+                                <input id="check2" type="checkbox">
+                                <label for="check2">Mùa xuân</label>
+                                <span class="checkmark"></span>
+                            </li>
+                            <li>
+                                <input id="check3" type="checkbox">
+                                <label for="check3">Mùa hạ</label>
+                                <span class="checkmark"></span>
+                            </li>
+                            <li>
+                                <input id="check4" type="checkbox">
+                                <label for="check4">Mùa thu</label>
+                                <span class="checkmark"></span>
+                            </li>
+                            <li>
+                                <input id="check4" type="checkbox">
+                                <label for="check4">Mùa đông</label>
+                                <span class="checkmark"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget_list tags_widget">
+                        <h3>Product tags</h3>
+                        <div class="tag_cloud">
+                            <a href="#">blouse</a>
+                            <a href="#">clothes</a>
+                            <a href="#">fashion</a>
+                            <a href="#">handbag</a>
+                            <a href="#">laptop</a>
+                        </div>
+                    </div>
+                </aside>
+                <!--sidebar widget end-->
+            </div>
+            <div class="col-lg-9 col-md-12">
+
+                <!--shop toolbar start-->
+                <div class="shop_toolbar_wrapper">
+                    <div class="shop_toolbar_btn">
+                        <button data-role="grid_4" type="button" class="active btn-grid-4" data-toggle="tooltip"
+                            title="4"></button>
+                        <button data-role="grid_3" type="button" class=" btn-grid-3" data-toggle="tooltip"
+                            title="3"></button>
+                    </div>
+                    <div class=" niceselect_option">
+                        <form class="select_option" action="#">
+                            <select name="orderby" id="short">
+
+                                <option selected value="1">Mới nhất</option>
+                                <option value="2">Cũ nhất</option>
+                                <option value="3">Giá từ cao đến thấp</option>
+                                <option value="4">Giá từ thấp đến cao</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="page_amount">
+                        <p>Hiển thị 1-9 trong ... sản phẩm</p>
+                    </div>
+                </div>
+                <!--shop toolbar end-->
+                <div class="row shop_wrapper">
+                    <div class="col-lg-3 col-md-4 col-12 " *ngFor="let product of products">
+                        <article class="single_product">
+                            <figure>
+                                <div class="product_thumb">
+                                    <a class="primary_img" [routerLink]="['detail/', product.id]"><img
+                                            src="assets/{{ product.avatarImage }}" alt=""></a>
+                                    <a class="secondary_img" [routerLink]="['detail/', product.id]"><img
+                                            src="assets/{{ product.avatarImage }}" alt=""></a>
+                                </div>
+                                <div class="product_content">
+                                    <div class="product_content_inner">
+                                        <h4 class="product_name"><a [routerLink]="['detail/', product.id]">{{ product.name }}</a></h4>
+                                        <div class="price_box">
+                                            <!-- <span class="old_price">1.020.000đ</span> -->
+                                            <span class="current_price">{{ product.price }}VND</span>
+                                        </div>
+                                    </div>
+                                    <div class="action_links">
+                                        <ul>
+                                            <li class="add_to_cart">
+                                                <a href="cart.html">Thêm vào giỏ
+                                                    hàng</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </figure>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="shop_toolbar t_bottom">
+                    <div class="pagination">
+                        <ul>
+                            <li class="current">1</li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li class="next"><a href="#">next</a></li>
+                            <li><a href="#">>></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--shop toolbar end-->
+                <!--shop wrapper end-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--shop  area end-->

@@ -1,0 +1,204 @@
+<!--header area start-->
+<!--offcanvas menu area start-->
+<div class="off_canvars_overlay">
+</div>
+<div class="offcanvas_menu offcanvas_two">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="canvas_open">
+                    <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                </div>
+                <div class="offcanvas_menu_wrapper">
+                    <div class="canvas_close">
+                        <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                    </div>
+                    <!-- <div class="call_support">
+                        <p><i class="icon-phone-call" aria-hidden="true"></i> <span>Call us: <a
+                                    href="tel:+(+800)456789">(+800) 456 789</a></span></p>
+
+                    </div> -->
+                    <div class="header_account">
+                        <ul>
+                            <li class="language"><a href="#"><i class="icon-phone-call" aria-hidden="true"></i> +84
+                                    98 960 1134</a>
+                            </li>
+                            <li class="currency"><a href="#">kyendesigns@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header_top_links">
+                        <ul>
+                            <li><a href="login.html">Register</a></li>
+                            <li><a href="login.html">login</a></li>
+                        </ul>
+                    </div>
+                    <div id="menu" class="text-left ">
+                        <ul class="offcanvas_main_menu">
+                            <li class="menu-item-has-children active">
+                                <a [routerLink]="['/']">Trang chủ</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a [routerLink]="['list']">Sản phẩm</a>
+                                <ul class="sub-menu">
+                                    <li *ngFor="let cat of categories"><a [routerLink]="['list/', cat.id]">{{ cat.name }}</a></li>
+                                </ul>
+
+                            </li>
+                            <li class="menu-item-has-children"><a href="">Tin tức</a></li>
+                            <li class="menu-item-has-children"><a href="">Giới thiệu</a></li>
+                            <li class="menu-item-has-children"><a href="">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                    <div class="offcanvas_footer">
+                        <span><a href="#"><i class="fa fa-envelope-o"></i> kyendesigns@gmail.com</a></span>
+                        <ul>
+                            <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                            <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--offcanvas menu area end-->
+
+<header>
+    <div class="main_header header_two">
+        <!--header top start-->
+        <div class="header_top">
+            <div class="container line_short">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-5">
+                        <div class="header_account">
+                            <ul>
+                                <li class="language"><a href="#"><i class="icon-phone-call" aria-hidden="true"></i>
+                                        +84 98 960 1134</a>
+                                </li>
+                                <li class="currency"><a href="#">kyendesigns@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-7">
+                        <div class="header_top_links text-right">
+                            <ul>
+                                <li><a href="login.html">Đăng ký</a></li>
+                                <li><a href="login.html">Đăng nhập</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--header top start-->
+
+        <!--header bottom satrt-->
+        <div class="header_bottom h_bottom_two sticky-header">
+            <div class="container" style="height: 5em; line-height: 5em;">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-sm-5">
+                        <div class="logo">
+                            <a href="index.html" style="font-weight: 600">KYEN DESIGNS</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-2">
+                        <div class="main_menu menu_two menu_position text-center">
+                            <nav>
+                                <ul>
+                                    <li><a class="active" [routerLink]="['/']">Trang chủ</a>
+                                        
+                                    </li>
+                                    <li><a [routerLink]="['list']">Sản phẩm<i class="fa fa-angle-down"></i></a>
+                                        <ul class="sub_menu pages">
+                                            <li *ngFor="let cat of categories"><a [routerLink]="['list/', cat.id]"> {{ cat.name }}</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Tin tức</a></li>
+                                    <li><a href="about.html">Giới thiệu</a></li>
+                                    <li><a href="contact.html">Liên hệ</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-5 custom-cart">
+                        <div class="header_right_box">
+                            <div class="header_configure_area">
+                                <div class="mini_cart_wrapper">
+                                    <a href="javascript:void(0)">
+                                        <i class="icon-shopping-bag2"></i>
+                                        <span class="cart_price">$152.00 <i class="ion-ios-arrow-down"></i></span>
+                                        <span class="cart_count">2</span>
+                                    </a>
+                                    <!--mini cart-->
+                                    <div class="mini_cart">
+                                        <div class="mini_cart_inner">
+                                            <div class="cart_close">
+                                                <div class="cart_text">
+                                                    <h3>cart</h3>
+                                                </div>
+                                                <div class="mini_cart_close">
+                                                    <a href="javascript:void(0)"><i class="icon-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="cart_item">
+                                                <div class="cart_img">
+                                                    <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                                </div>
+                                                <div class="cart_info">
+                                                    <a href="#">Fusce Aliquam</a>
+                                                    <p>Qty: 1 X <span> $60.00 </span></p>
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="cart_item">
+                                                <div class="cart_img">
+                                                    <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+                                                </div>
+                                                <div class="cart_info">
+                                                    <a href="#">Ras Neque Metus</a>
+                                                    <p>Qty: 1 X <span> $60.00 </span></p>
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="mini_cart_table">
+                                                <div class="cart_total">
+                                                    <span>Sub total:</span>
+                                                    <span class="price">$138.00</span>
+                                                </div>
+                                                <div class="cart_total mt-10">
+                                                    <span>total:</span>
+                                                    <span class="price">$138.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mini_cart_footer">
+                                            <div class="cart_button">
+                                                <a href="cart.html">View cart</a>
+                                            </div>
+                                            <div class="cart_button">
+                                                <a class="active" href="checkout.html">Checkout</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--mini cart end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--header bottom end-->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--header area end-->

@@ -1,0 +1,117 @@
+aaa
+<p-toast></p-toast>
+
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                (click)="openNew()"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="products" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
+        [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h3 class="p-m-0 text-center">Quản lý sản phẩm</h3>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <!-- <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." /> -->
+                    <input pInputText type="text" placeholder="Tìm kiếm..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">STT</th>
+                <th pSortableColumn="name">Tên sản phẩm <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <th>Hình ảnh</th>
+                <th pSortableColumn="price">Đơn giá bán<p-sortIcon field="price"></p-sortIcon>
+                </th>
+                <th pSortableColumn="quantity">Số lượng<p-sortIcon field="quantity"></p-sortIcon>
+                </th>
+                <!-- <th pSortableColumn="category">Thuộc danh mục <p-sortIcon field="category"></p-sortIcon></th> -->
+                <!-- <th pSortableColumn="rating">Mô tả <p-sortIcon field="rating"></p-sortIcon></th> -->
+                <th pSortableColumn="inventoryStatus">Thao tác</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{product.name}}</td>
+                <td><img [src]="'assets/' + product.avatarImage" [alt]="product.name" width="100" class="p-shadow-4" />
+                </td>
+                <td>{{product.price | currency:'VND'}}</td>
+                <td>{{ product.quantity }}</td>
+                <!-- <td>{{product.productCategory_Id}</td> -->
+                <!-- <td>{{ product.description }}</td> -->
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                        (click)="editProduct(product)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteProduct(product)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<!-- modal detail -->
+<p-dialog [(visible)]="productDialog" [style]="{width: '80vw'}" header="Thông tin sản phẩm" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <img [src]="'assets/' + product.avatarImage" [alt]="product.avatarImage" class="product-image"
+            *ngIf="product.avatarImage">
+        <div class="p-field">
+            <label for="name">Tên sản phẩm</label>
+            <input type="text" pInputText id="name" name="name" [(ngModel)]="product.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !product.name">Tên sản phẩm không được bỏ trống!</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Mô tả</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" ></textarea>
+        </div>
+        <div class="p-field">
+            <label for="inventoryStatus">Trạng thái</label>
+            <p-dropdown [(ngModel)]="product.state" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span [class]="'product-badge status-' + option.value">{{option.value}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="p-field">
+            <label class="p-mb-3">Danh mục sản phẩm</label>
+            <div class="p-formgrid p-grid">
+                <div class="p-field-radiobutton p-col-6" *ngFor="let cat of categories">
+                    <p-radioButton id="category1" name="category" value="Accessories"
+                        [(ngModel)]="product.productCategory_Id"></p-radioButton>
+                    <label for="category1">{{ cat.name }}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="price">Đơn giá bán</label>
+                <p-inputNumber id="price" name="price" [(ngModel)]="product.price" mode="currency" currency="VND">
+                </p-inputNumber>
+            </div>
+            <div class="p-field p-col">
+                <label for="quantity">Số lượng</label>
+                <p-inputNumber id="quantity" name="quantity" ngDefaultControl [(ngModel)]="product.quantity">
+                </p-inputNumber>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
