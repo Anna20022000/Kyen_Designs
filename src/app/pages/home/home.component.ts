@@ -8,7 +8,6 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
 })
 export class HomeComponent extends BaseComponent implements OnInit {
   
@@ -24,10 +23,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.getLatest();
     this.getSalest();
     this.getNews();
-
-    setTimeout(() =>
-    this.loadScripts());
-
   }
 
   getLatest():void{
@@ -35,31 +30,36 @@ export class HomeComponent extends BaseComponent implements OnInit {
     .subscribe(
       data => {
         this.productsLatest = data;
+        setTimeout(() =>
+          this.loadScripts(), 500);
       },
       error =>{
-        console.log(error);
-      }
-    )
-  }
-
+        console.log(error);}
+    )}
   getSalest(): void{
     this.productService.getProductSalest()
     .subscribe(
       data => {
         this.productsSalest = data;
+        setTimeout(() =>
+    this.loadScripts());
       }
-    )
-  }
-
+    )}
   getNews():void{
     this.newsService.getLatest().subscribe(
       data => {
         this.news = data;
+        setTimeout(() =>
+    this.loadScripts());
       },
       error =>{
         console.log(error);
       }
-    )
+  )}
+  addToCart(it:Product, quantity: any) {
+    let soLuong = Number.parseInt(quantity);
+    let item ={product: it, quantity: soLuong};
+    this._cart.addToCart(item);
+    alert('Thêm sản phẩm vào giỏ hàng thành công!'); 
   }
-  
 }

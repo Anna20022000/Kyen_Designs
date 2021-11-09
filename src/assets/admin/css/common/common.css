@@ -1,0 +1,17 @@
+.m-row{
+    display: block;
+    width: 100%;
+}
+.m-row>label{
+    display: block;
+    margin-top: 10px;
+}
+.m-text-center{
+    text-align: center;
+}
+.m-text-right{
+    text-align: right;
+}
+.m-text-left{
+    text-align: left;
+}

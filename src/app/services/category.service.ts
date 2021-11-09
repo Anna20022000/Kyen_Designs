@@ -16,5 +16,16 @@ export class CategoryService {
   getAll(): Observable<Category[]> {
     return this.http.get<Category[]>(baseUrl+ '/all');
   }
+  delete(id:number) :Observable<any>{
+    return this.http.delete(`${baseUrl}/delete/${id}`);
+  }
 
+  update(p:any):Observable<any>{
+    return this.http.put(baseUrl + '/update', p);
+  }
+
+  create(p:any):Observable<any>{
+    debugger
+    return this.http.post(baseUrl + '/create', p);
+  }
 }

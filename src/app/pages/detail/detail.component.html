@@ -1,309 +1,109 @@
-<!--slider area start-->
-<section class="banner_top">
-    <img src="assets/images/Slides/bg_2.png" alt="" style="width: 100%; opacity: 0.85;">
-</section>
-<!--slider area end-->
-<!--breadcrumbs area start-->
-<div class="breadcrumbs_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb_content">
-                    <ul>
-                        <li><a>Trang chủ</a></li>
-                        <li><a>Loại sp</a></li>
-                        <li>{{ id }}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--breadcrumbs area end-->
 
-<div class="product_page_bg">
-    <div class="container">
-        <!--product details start-->
-        <div class="product_details">
-            <div class="row">
-                <div class="col-lg-6 col-md-7">
-                    <div class="product-details-tab">
-                        <div id="img-1" class="zoomWrapper single-zoom">
-                            <a href="#">
-                                <img id="zoom1" src="assets/images/Products/0a6a473fc253370d6e42238.jpg"
-                                    data-zoom-image="assets/images/Products/0a6a473fc253370d6e42238.jpg" alt="big-1">
-                            </a>
-                        </div>
-                        <div class="single-zoom-thumb">
-                            <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="assets/images/Products/0ad5c27dce0d3a53631c21.jpg"
-                                        data-zoom-image="assets/images/Products/0ad5c27dce0d3a53631c21.jpg">
-                                        <img src="assets/images/Products/0ad5c27dce0d3a53631c21.jpg" alt="zo-th-1" />
-                                    </a>
+<main class="main">
+    <div class="page-header text-center">
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+        <div class="container d-flex align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [href]="'home'">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a [href]="'list'">Sản phẩm</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
 
-                                </li>
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="assets/images/Products/0e6c33a9b5c5409b19d4227.jpg"
-                                        data-zoom-image="assets/images/Products/0e6c33a9b5c5409b19d4227.jpg">
-                                        <img src="assets/images/Products/0e6c33a9b5c5409b19d4227.jpg" alt="zo-th-1" />
-                                    </a>
+    <div class="page-content">
+        <div class="container">
+            <div class="product-details-top">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="product-gallery product-gallery-separated">
+                            <figure class="product-separated-item">
+                                <img src="assets/{{ product.avatarImage }}" alt="product image">
+                            </figure>
+                        </div><!-- End .product-gallery -->
+                    </div><!-- End .col-md-6 -->
 
-                                </li>
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="assets/images/Products/4e4e6b50ee3c1b62422d231.jpg"
-                                        data-zoom-image="assets/images/Products/4e4e6b50ee3c1b62422d231.jpg">
-                                        <img src="assets/images/Products/4e4e6b50ee3c1b62422d231.jpg" alt="zo-th-1" />
-                                    </a>
+                    <div class="col-md-6">
+                        <div class="product-details sticky-content">
+                            <h1 class="product-title">{{ product.name }}</h1><!-- End .product-title -->
 
-                                </li>
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="assets/images/Products/5a076815ed7918274168232.jpg"
-                                        data-zoom-image="assets/images/Products/5a076815ed7918274168232.jpg">
-                                        <img src="assets/images/Products/5a076815ed7918274168232.jpg" alt="zo-th-1" />
-                                    </a>
+                            <div class="product-price">
+                                <span class="new-price">{{ product.price }}VND</span>
+                            </div><!-- End .product-price -->
 
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-5">
-                    <div class="product_d_right" style="position: sticky; top: 5.5em">
-                        <form action="#">
+                            <div class="product-content">
+                                <p>{{ product.description }}</p>
+                            </div><!-- End .product-content -->
+                            <div class="details-filter-row details-row-size">
+                                <label>Màu sắc:</label>
 
-                            <h3><a href="#">Name product {{id}}</a></h3>
-                            <div class="price_box product_desc">
-                                <span class="current_price" style="font-weight: 600;">999.000d</span> &nbsp;
-                                <span class="old_price" style="font-size: 98%;">1.200.000d</span>
-                            </div>
+                                <div class="product-nav product-nav-thumbs">
+                                        {{ product.color }}
+                                </div><!-- End .product-nav -->
+                            </div><!-- End .details-filter-row -->
+                            <div class="details-filter-row details-row-size">
+                                <label for="size">Size:</label>
+                                <div class="select-custom">
+                                    <select name="size" id="size" class="form-control">
+                                        <option value="#" selected="selected">Chọn một size</option>
+                                        <option value="s">Small</option>
+                                        <option value="m">Medium</option>
+                                        <option value="l">Large</option>
+                                        <option value="xl">Extra Large</option>
+                                    </select>
+                                </div><!-- End .select-custom -->
 
-                            <div class="product_variant color">
-                                <b>Thông tin sản phẩm</b>
-                                <p style="text-align: justify;">Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis
-                                    vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem
-                                    ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat
-                                    vestibulum, metus nisi posuere nisl, in </p>
+                                <a href="#" class="size-guide"><i class="icon-th-list"></i>Hướng dẫn chọn size</a>
+                            </div><!-- End .details-filter-row -->
 
-                                <p>Màu sắc:</p>
-                                <ul>
-                                    <li class="color1"><a href="#"></a></li>
-                                    <li class="color2"><a href="#"></a></li>
-                                    <li class="color3"><a href="#"></a></li>
-                                    <li class="color4"><a href="#"></a></li>
-                                </ul>
-                                <p>Kích cỡ: </p>
-                                <ul>
-                                <li class="size1"><a href="#"></a></li>
-                                <li class="size2"><a href="#"></a></li>
-                                <li class="size3"><a href="#"></a></li>
-                                <li class="size4"><a href="#"></a></li>
-                            </ul>
-                            </div>
-                            <div class="product_variant quantity">
-                                <label>Số lượng: </label>
-                                <input min="1" max="100" value="1" type="number">
-                            </div>
-                            <div class="product_variant quantity">
-                                <button class="button" type="submit">Thêm vào giỏ hàng</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--product details end-->
+                            <div class="details-filter-row details-row-size">
+                                <label for="qty">Số lượng:</label>
+                                <div class="product-details-quantity">
+                                    <input type="number" #Qnt class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                </div><!-- End .product-details-quantity -->
+                            </div><!-- End .details-filter-row -->
 
-        <!--product area start-->
-        <section class="product_area related_products">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section_title mb-35">
-                        <div class="title_content">
-                            <h2>Có thể bạn sẽ thích</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="product_carousel product_details_column5 owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="product_items">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img
-                                                src="assets/images/Products/191fa2642408d1568819214.jpg"
-                                                alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img
-                                                src="assets/images/Products/1bf69d6ed602235c7a13.jpg"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">Áo dài
-                                                    cách tân Anna</a></h4>
-                                            <div class="price_box">
-                                                <span class="old_price">1.020.000đ</span>
-                                                <span class="current_price">999.000đ</span>
-                                            </div>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart">
-                                                    <a href="cart.html">Thêm vào giỏ
-                                                        hàng</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product_items">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img
-                                                src="assets/images/Products/329fd69a53f6a6a8ffe7234.jpg"
-                                                alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img
-                                                src="assets/images/Products/1bf69d6ed602235c7a13.jpg"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">Áo dài
-                                                    cách tân Anna</a></h4>
-                                            <div class="price_box">
-                                                <span class="old_price">1.020.000đ</span>
-                                                <span class="current_price">999.000đ</span>
-                                            </div>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart">
-                                                    <a href="cart.html">Thêm vào giỏ
-                                                        hàng</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product_items">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img
-                                                src="assets/images/Products/5a076815ed7918274168232.jpg"
-                                                alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img
-                                                src="assets/images/Products/1bf69d6ed602235c7a13.jpg"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">Áo dài
-                                                    cách tân Anna</a></h4>
-                                            <div class="price_box">
-                                                <span class="old_price">1.020.000đ</span>
-                                                <span class="current_price">999.000đ</span>
-                                            </div>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart">
-                                                    <a href="cart.html">Thêm vào giỏ
-                                                        hàng</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product_items">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img
-                                                src="assets/images/Products/5a076815ed7918274168233.jpg"
-                                                alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img
-                                                src="assets/images/Products/1bf69d6ed602235c7a13.jpg"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">Áo dài
-                                                    cách tân Anna</a></h4>
-                                            <div class="price_box">
-                                                <span class="old_price">1.020.000đ</span>
-                                                <span class="current_price">999.000đ</span>
-                                            </div>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart">
-                                                    <a href="cart.html">Thêm vào giỏ
-                                                        hàng</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product_items">
-                            <article class="single_product">
-                                <figure>
-                                    <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img
-                                                src="assets/images/Products/817328edad8158df0190240.jpg"
-                                                alt=""></a>
-                                        <a class="secondary_img" href="product-details.html"><img
-                                                src="assets/images/Products/1bf69d6ed602235c7a13.jpg"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="product_content_inner">
-                                            <h4 class="product_name"><a href="product-details.html">Áo dài
-                                                    cách tân Anna</a></h4>
-                                            <div class="price_box">
-                                                <span class="old_price">1.020.000đ</span>
-                                                <span class="current_price">999.000đ</span>
-                                            </div>
-                                        </div>
-                                        <div class="action_links">
-                                            <ul>
-                                                <li class="add_to_cart">
-                                                    <a href="cart.html">Thêm vào giỏ
-                                                        hàng</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--product area end-->
-    </div>
-</div>
+                            <div class="product-details-action">
+                                <a (click)="addToCart(product, Qnt.value)" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></a>
+                            </div><!-- End .product-details-action -->
+
+                            <div class="product-details-footer">
+
+                                <div class="social-icons social-icons-sm">
+                                    <span class="social-label">Share:</span>
+                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                    <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                </div>
+                            </div><!-- End .product-details-footer -->
+
+                        </div><!-- End .product-details -->
+                    </div><!-- End .col-md-6 -->
+                </div><!-- End .row -->
+            </div><!-- End .product-details-top -->
+
+            <h2 class="title text-center mb-4">Có thể bạn sẽ thích</h2><!-- End .title text-center -->
+
+            <div class="product-carousel owl-carousel owl-simple carousel-equal-height carousel-with-shadow">
+                <div class="product product-7 text-center" *ngFor="let item of spLienQuan">
+                    <figure class="product-media">
+                        <a [href]="'detail/' + item.id">
+                            <img src="assets/{{ item.avatarImage }}" alt="Product image" class="product-image">
+                        </a>
+
+                        <div class="product-action product-action-transparent">
+                            <a (click)="addToCart(item, 1)" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></a>
+                        </div><!-- End .product-action -->
+                    </figure><!-- End .product-media -->
+
+                    <div class="product-body">
+                        <h3 class="product-title"><a href="product.html">{{ item.name }}</a></h3><!-- End .product-title -->
+                        <div class="product-price">{{ item.price }}VND</div><!-- End .product-price -->
+                    </div><!-- End .product-body -->
+                </div><!-- End .product -->
+            </div><!-- End .owl-carousel -->
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->

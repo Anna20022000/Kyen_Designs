@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, Injector, OnInit, Renderer2 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Injector, OnInit, Renderer2 } from '@angular/core';
 import { BaseComponent } from 'src/app/core/base-component';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
@@ -12,11 +11,16 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class ListComponent extends BaseComponent implements OnInit {
 
   idlsp: number = 0;
   products?: Product[];
   categories?: Category[];
+
+  public list_item: any;
+  public page = 1;
+  public pageSize = 9;
+  public totalItems:any;
 
   constructor(injector: Injector, private productService: ProductService, private categoryService: CategoryService) {
     super(injector);
@@ -29,13 +33,16 @@ export class ListComponent extends BaseComponent implements OnInit, AfterViewIni
       this.idlsp = param['idlsp'];
     });
     if (this.idlsp === undefined) {
-      this.getAllProduct();
+      this.loadPage(1);
     }
     else this.getProductsByCat();
   }
-
-  ngAfterViewInit() {
-    this.loadScripts();
+  
+  addToCart(it:Product, quantity: any) {
+    let soLuong = Number.parseInt(quantity);
+    let item ={product: it, quantity: soLuong};
+    this._cart.addToCart(item);
+    alert('Thêm thành công!'); 
   }
 
   getAllProduct(): void {
@@ -68,4 +75,13 @@ export class ListComponent extends BaseComponent implements OnInit, AfterViewIni
         console.log(error);
       });
   }
+
+  loadPage(page:number) {
+    this.productService.search(page, this.pageSize, '').subscribe(
+        data => {
+        this.products = data.data;
+        this.totalItems = data.totalItems;
+        });
+  }
+
 }

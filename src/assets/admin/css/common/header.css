@@ -1,0 +1,35 @@
+
+/* ======== header ========= */
+.m-header{
+    height: 48px;
+    width: calc(100% - 221px);
+    border-bottom: 1px solid #e5e5e5;
+    float: left;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+.m-header .m-header-left .m-combobox{
+    border: none;
+    margin-left: 24px;
+    height: 48px;
+}
+.m-header .m-header-left .m-combobox *{
+    height: 48px;
+}
+
+.m-header .m-header-left .m-combobox{
+    border: none;
+    outline: unset;
+    
+}
+.m-header .m-header-right{
+    display: flex;
+}
+.m-header .m-header-right .m-icon-option,
+.m-header .m-header-right .m-user-avt{
+    padding: 12px 16px;
+}
+.m-header .m-header-right .m-user-name{
+    line-height: 44px;
+}

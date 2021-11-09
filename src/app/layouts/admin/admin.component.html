@@ -1,3 +1,76 @@
-admin page
-<router-outlet></router-outlet>
-footer admin
+<div class="m-navbar">
+    <div class="m-nav-top">
+        <div class="m-toggle">
+            <img src="../../../assets/admin/content/img/toggle.png" alt="">
+        </div>
+        <div class="m-logo">
+            <img src="../../../assets/admin/content/cukcuk-logo.png" alt="">
+        </div>
+    </div>
+    <div class="m-menu">
+        <ul>
+            <li>
+                <a [routerLink]="'admin'">
+                    <div class="m-icon-submenu">
+                        <img src="../../../assets/admin/content/icon/dashboard.png" alt="">
+                    </div>
+                    <div class="m-name-submenu">Tổng quan</div>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['admin/order']" routerLinkActive="router-link-active">
+                    <div class="m-icon-submenu">
+                        <img src="../../../assets/admin/content/icon/report.png" alt="">
+                    </div>
+                    <div class="m-name-submenu">Quản lý hóa đơn</div>
+                </a>
+            </li>
+            <li>
+                <a  [routerLink]="['admin/product']" routerLinkActive="router-link-active">
+                    <div class="m-icon-submenu">
+                        <img src="../../../assets/admin/content/icon/dashboard.png" alt="">
+                    </div>
+                    <div class="m-name-submenu">Quản lý sản phẩm</div>
+                </a>
+            </li>
+            <li class="">
+                <a [routerLink]="['admin/category']" routerLinkActive="router-link-active">
+                    <div class="m-icon-submenu">
+                        <img src="../../../assets/admin/content/icon/dic-employee.png" alt="">
+                    </div>
+                    <div class="m-name-submenu">Quản lý danh mục</div>
+                </a>
+            </li>
+            <li class="">
+                <a [routerLink]="['admin/report']" routerLinkActive="router-link-active">
+                    <div class="m-icon-submenu">
+                        <img src="../../../assets/admin/content/icon/dic-employee.png" alt="">
+                    </div>
+                    <div class="m-name-submenu">Báo cáo, thống kê</div>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['admin/setting']" routerLinkActive="router-link-active">
+                    <div class="m-icon-submenu">
+                        <img src="../../../assets/admin/content/icon/setting.png" alt="">
+                    </div>
+                    <div class="m-name-submenu">Thiết lập hệ thống</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="m-main">
+    <div class="m-header">
+        <div class="m-header-left">
+        </div>
+        <div class="m-header-right">
+            <img class="m-user-avt" src="../../../assets/admin/content/icon/avatar-default.png" alt="">
+            <div class="m-user-name">Chu Thị Kim Yến</div>
+            <div class="m-icon-option">
+                <img src="../../../assets/admin/content/icon/option.png" alt="">
+            </div>
+        </div>
+    </div>
+        <router-outlet></router-outlet>
+</div>

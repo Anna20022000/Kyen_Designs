@@ -29,4 +29,27 @@ export class ProductService {
   getProductSalest() : Observable<Product[]>{
     return this.http.get<Product[]>(baseUrl + '/getTopSalingProducts');
   }
+  getSingle(id:number): Observable<Product>{
+    return this.http.get<Product>(baseUrl+'/getSingle/'+id);
+  }
+
+  search(page:number, size:number, name:string):Observable<any>{
+    var obj:any = {page: page, pageSize: size, tenSP: name };
+    return this.http.post(baseUrl + '/search', obj);
+  }
+
+  delete(id:number) :Observable<any>{
+    return this.http.delete(`${baseUrl}/delete/${id}`);
+  }
+
+  update(p:any):Observable<any>{
+    return this.http.put(baseUrl + '/update_product', p);
+  }
+
+  create(p:any):Observable<any>{
+    return this.http.post(baseUrl + '/create_product', p);
+  }
+  upload(file: FormData) : Observable<any>{
+    return this.http.post(`${baseUrl}/upload`, file);
+  }
 }

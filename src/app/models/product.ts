@@ -5,7 +5,7 @@ export class Product {
     name ?: string;
     color ?: string;
     size ?: string;
-    state ?: string;
+    state ?: boolean;
     description ?: string;
     avatarImage ?: string;
     price ?: number;

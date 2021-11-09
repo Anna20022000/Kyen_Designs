@@ -1,0 +1,32 @@
+.m-chip-status {
+    display: flex;
+    justify-content: space-around;
+}
+.m-chip{
+    font-size: 11px;
+    height: 32px;
+    width: 100px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 32px;
+}
+.m-chip.m-chip-danger{
+    background-color: #FFEBEB;
+    color: #F65454;
+}
+.m-chip.m-chip-success{
+    background-color: #EBF9F4;
+    color: #01B075;
+}
+.m-chip.m-chip-primary{
+    background-color: #EBF4FF;
+    color: #0075FF;
+}
+.m-chip.m-chip-warning{
+    background-color: #FFF3EB;
+    color: #FF6900;
+}
+.m-chip.m-chip-secondary{
+    background-color: #E5E5E5;
+    color: #454545;
+}

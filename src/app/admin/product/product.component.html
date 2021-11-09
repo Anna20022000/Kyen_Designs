@@ -1,0 +1,176 @@
+<div class="m-content">
+    <div class="m-title">
+        <span>Danh sách sản phẩm</span>
+        <button class="m-btn m-btn-icon m-btn-icon-add" data-toggle="modal" data-target="#myModal"
+            (click)="createMode()">Thêm sản phẩm</button>
+    </div>
+    <div class="m-row">
+        <div class="m-filter">
+            <input placeholder="Tìm kiếm theo mã hoặc tên" class="m-input m-input-search" type="text" [(ngModel)]="nameSearch" (input)="loadPage(1)">
+            <div class="m-filter-room">
+                <select class="m-combobox" [(ngModel)]="pageSize" (ngModelChange)="loadPage(1)">
+                    <option value="10" selected>10 bản ghi/ trang</option>
+                    <option value="15">15 bản ghi/ trang</option>
+                    <option value="30">30 bản ghi/ trang</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="m-content-main">
+        <table class="m-table">
+            <thead class="m-text-left">
+                <tr>
+                    <th style="width: 1.5em">STT</th>
+                    <th>Tên sản phẩm</th>
+                    <th class="m-text-center">Hình ảnh</th>
+                    <th style="width: 8em">Màu sắc</th>
+                    <th>Kích cỡ</th>
+                    <th style="width: 8em">Đơn giá (VND)</th>
+                    <th style="width: 5.5em">Số lượng</th>
+                    <th style="width: 8em">Loại sản phẩm</th>
+                    <th class="m-text-center" style="width: 8.5em">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of products; let i=index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.name }}</td>
+                    <td style="width: 8em"><img src="../../../assets/{{ item.avatarImage}}" alt=""></td>
+                    <td style="width: 10%;">{{ item.color }}</td>
+                    <td style="width: 8%; text-align: center;">{{ item.size }}</td>
+                    <td class="m-text-right">{{ item.price }}</td>
+                    <td class="m-text-right">{{ item.quantity }}</td>
+                    <td class="m-text-center">{{ item.productCategory_Id }}</td>
+                    <td> <button class="m-btn btn-edit"><i class="fas fa-edit" (click)="updateMode(item.id)"></i></button>
+                        <button class="m-btn btn-del" (click)="onDelete(item.id)"><i
+                                class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-navigation">
+            <div class="m-paging-left" *ngIf="pageSize<=totalItems">
+                Hiển thị {{ pageSize }}/{{ totalItems }} bản ghi
+            </div>
+            <div class="m-paging-left" *ngIf="pageSize>totalItems">
+                Hiển thị {{ totalItems }}/{{ totalItems }} bản ghi
+            </div>
+            <div class="m-paging-center">
+                <nav aria-label="Page navigation">
+                    <ngb-pagination [collectionSize]="totalItems" [pageSize]="pageSize" [(page)]="page" [maxSize]="5" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+                </nav>
+            </div>
+            <div class="m-paging-right">
+                <select class="m-combobox" [(ngModel)]="pageSize" (ngModelChange)="loadPage(1)">
+                    <option value="10">10 bản ghi/ trang</option>
+                    <option value="15">15 bản ghi/ trang</option>
+                    <option value="30">30 bản ghi/ trang</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" *ngIf="isAddMode">Thêm mới sản phẩm</h5>
+                <h5 class="modal-title" *ngIf="!isAddMode">Sửa thông tin sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pt-3">
+                <div class="container-fluid">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <input *ngIf="product" type="number" formControlName="id" value="{{product.id}}" style="display: none;">
+                        <div class="form-group row">
+                            <label for="name" class="col-form-label col-sm-3">Tên sản phẩm:</label>
+                            <input formControlName="name" type="text" class="form-control col-sm-9"
+                                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Tên sản phẩm không được để trống!</div>
+                            </div>
+                        </div>  
+                        <div class="form-group row">
+                            <label for="productCategory_Id" class="col-form-label col-sm-4">Danh mục sản phẩm:</label>
+                            <div class="m-filter-room col-sm-8">
+                                <select formControlName="productCategory_Id" class="m-combobox">
+                                    <option value="">Chọn danh mục sản phẩm</option>
+                                    <option value="{{item.id}}" *ngFor="let item of categories">{{ item.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-6">
+                                <label>Giá bán (VND): </label>
+                                <input type="number" formControlName="price" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                    <div *ngIf="f.price.errors.required">Giá bán không được để trống!</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Số lượng: </label>
+                                <input type="number" formControlName="quantity" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                                    <div *ngIf="f.quantity.errors.required">Số lượng sản phẩm không được để trống!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-6">
+                                <label>Màu sắc: </label>
+                                <input type="text" formControlName="color" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.color.errors }" />
+                                <div *ngIf="submitted && f.color.errors" class="invalid-feedback">
+                                    <div *ngIf="f.color.errors.required">Màu sản phẩm không được để trống!</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Kích cỡ: </label>
+                                <input type="text" formControlName="size" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.size.errors }" />
+                                <div *ngIf="submitted && f.size.errors" class="invalid-feedback">
+                                    <div *ngIf="f.size.errors.required">Kích cỡ sản phẩm không được để trống!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-form-label col-sm-3">Mô tả:</label>
+                            <input formControlName="description" type="text" class="form-control col-sm-9"
+                                [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.required">Mô tả sản phẩm không được để trống!</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputAvt" class="col-form-label col-sm-3">Hình ảnh:</label>
+                            <div class="col-sm-6">
+                                <input type="file" formControlName="avatarImage" class="form-control"
+                                (change)="onFileChange($event)">
+                                <div *ngIf="submitted && f.avatarImage.errors" class="invalid-feedback">
+                                    <div *ngIf="f.avatarImage.errors?.required">File is required.</div>
+                                </div>
+                            </div>
+                            <img class="col-sm-4" *ngIf="product && product.avatarImage" src="../../../assets/{{ product.avatarImage }}"
+                                style="position:absolute; top:0px; right:10px;" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-sm" (click)="Reset()">
+                                <i class="fa fa-bell"></i> Làm mới
+                            </button>
+                            <input type="submit" class="btn btn-success btn-sm btn-submit"  value="Lưu">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal -->

@@ -1,0 +1,9 @@
+.m-combobox{
+    height: 40px;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    min-width: 100px;
+}
+.m-combobox:focus{
+    border-color: #019160;
+}

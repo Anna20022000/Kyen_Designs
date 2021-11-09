@@ -1,0 +1,32 @@
+/* ======== main ========= */
+.m-content{
+    width: calc(100% - 245px);
+    height: calc(100vh - 49px);
+    float: left;
+    padding: 0 12px;
+}
+.m-content .m-title{
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+    margin: 12px 0;
+}
+.m-content .m-title span{
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 48px;
+}
+.m-content .m-title button{
+    margin: 4px 0;
+}
+.m-content .m-row{
+    display: flex;
+    justify-content: space-between;
+}
+.m-filter{
+    display: flex;
+    justify-content: start;
+}
+.m-filter > div{
+    padding: 0 10px;
+}

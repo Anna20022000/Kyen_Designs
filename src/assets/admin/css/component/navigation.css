@@ -1,0 +1,58 @@
+.m-navigation{
+    height: 56px;
+    width: 100%;
+    /* border: 1px solid #ddd; */
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.m-navigation .m-paging-left{
+    /* width: 200px; */
+    line-height: 56px;
+}
+.m-navigation .m-paging-center{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.m-navigation .m-paging-first{
+    width: 24px;
+    height: 24px;
+    background-image: url('../../content/icon/btn-firstpage.svg');
+}
+.m-navigation .m-paging-prev{
+    width: 24px;
+    height: 24px;
+    background-image: url('../../content/icon/btn-prev-page.svg');
+
+}
+.m-navigation .m-paging-number{
+    line-height: 24px;
+    text-align: center;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+}
+.m-navigation .m-paging-next{
+    width: 24px;
+    height: 24px;
+    background-image: url('../../content/icon/btn-next-page.svg');
+
+}
+.m-navigation .m-paging-last{
+    width: 24px;
+    height: 24px;
+    background-image: url('../../content/icon/btn-lastpage.svg');
+
+}
+.m-navigation .m-paging-center .m-paging-number div.m-page{
+    min-width: 24px;
+    height: 24px;
+    margin: 0 5px;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.m-navigation .m-paging-center .m-paging-number div.m-page:hover{
+    background-color: #bbbbbb;
+}

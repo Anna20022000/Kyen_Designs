@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { ClientComponent } from './layouts/client/client.component';
 
 const routes: Routes = [
+  { path: 'test', component: DashboardComponent},
   {
     path: '',
     redirectTo: 'home',
@@ -20,7 +22,7 @@ const routes: Routes = [
     path: '',
     component: ClientComponent,
     children: [
-      { path: '', loadChildren: () => import('./layouts/client/client.module').then(m => m.ClientModule)}
+      { path: '', loadChildren: () => import('./layouts/client/client.module').then(m => m.ClientModule), data: { preload: true, delay: true }}
     ]
   }
   // { path: '', loadChildren: () => import('./main/main.module').then(m => m.MainModule), canActivate: [AuthGuard], data: { preload: true, delay: true } },

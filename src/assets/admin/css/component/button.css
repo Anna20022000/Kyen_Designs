@@ -1,0 +1,103 @@
+.m-btn{
+    background-color: #019160;
+    border-radius: 4px;
+    height: 40px;
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: normal;
+    padding: 0 24px;
+    text-align: center;
+    outline: unset;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+}
+.m-btn:hover{
+    background-color: #2FBE8E;
+}
+.m-btn:active{
+    background-color: #01B075;
+}
+
+button.m-btn.m-btn-icon{
+    background-repeat: no-repeat;
+    background-position: 16px center;
+    background-size: 16px;
+    padding-left: 40px;
+}
+button.m-btn.m-btn-icon.m-btn-icon-add{
+    background-image: url('../../content/icon/add.png');
+}
+
+/* ====== btn 2 icon ======== */
+.m-btn-save-new{
+    background-color: #019160;
+    border-radius: 4px;
+    height: 40px;
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: normal;
+    padding: 0;
+    text-align: center;
+    outline: unset;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    display: flex;
+}
+.m-btn-save-new .m-btn-icon-left{
+    padding: 0 16px;
+    border-right: 1px solid #2FBE8E;
+    line-height: 40px;
+    height: 40px;
+    border-radius: 4px 0 0 4px;
+}
+.m-btn-save-new .m-btn-icon-left:hover{
+    background-color: #2FBE8E;
+}
+.m-btn-save-new .m-btn-icon-left i{
+    padding-right: 8px;
+    font-size: 16px;
+}
+.m-btn-save-new .m-btn-icon-right{
+    border-radius: 0 4px 4px 0;
+}
+.m-btn-save-new .m-btn-icon-right i{
+    line-height: 40px;
+    padding: 0 12px;
+    font-size: 16px;
+}
+.m-btn-save-new .m-btn-icon-right:hover{
+    background-color: #2FBE8E;
+}
+
+/* ======== btn search ======== */
+button.m-btn.m-btn-icon.m-btn-icon-refresh{
+    background-color: #fff;
+    border: 1px solid #bbbbbb;
+    min-width: 48px;
+    padding: 0;
+}
+.btn-edit{
+    background-color: #FFE7AF;
+    min-width: 40px;
+    font-size: 16px;
+    color: #000;
+    margin-right: 10px;
+    padding: 0;
+}
+.btn-edit:hover{
+    background-color: #FF6900;
+    color: #fff;
+}
+.btn-del{
+    background-color: #FFCECE;
+    min-width: 40px;
+    font-size: 16px;
+    color: #000;
+    padding: 0;
+}
+.btn-del:hover{
+    background-color: #F65454;
+    color: #fff;
+}
