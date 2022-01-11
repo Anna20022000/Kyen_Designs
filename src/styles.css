@@ -26,3 +26,17 @@ body{
 .mmenu-active .mobile-menu-container{
     transform: translateX(80px)
 }
+
+/* login */
+#signin-modal section{
+    z-index: 9999999;
+}
+#signin-modal .background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://theme.hstatic.net/200000000133/1000569834/14/slideshow_2.jpg?v=5258');
+    background-size: cover;
+}

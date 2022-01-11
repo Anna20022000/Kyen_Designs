@@ -11,7 +11,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class DetailComponent extends BaseComponent implements OnInit {
   
   public id:any;
-  public product!: Product;
+  public idLSP : any;
+  public product : Product = new Product;
   public spLienQuan!: Product[];
 
   constructor(injector: Injector, private productService: ProductService) { 
@@ -23,7 +24,6 @@ export class DetailComponent extends BaseComponent implements OnInit {
       this.id = params['idsp'];  
     });
     this.getSingle();
-    this.getSPLQ();
   }
 
   addToCart(it:Product, quantity: any) {
@@ -33,18 +33,27 @@ export class DetailComponent extends BaseComponent implements OnInit {
     alert('Thêm sản phẩm vào giỏ hàng thành công!'); 
   }
 
+  /**
+   * Get a product by id product
+   */
   getSingle(): void {
     this.productService.getSingle(this.id)
       .subscribe(
         data => {
           this.product = data;
+          this.idLSP = this.product.productCategory_Id;
+          this.getSPLQ();
         },
         error => {
           console.log(error);
         });
   }
+  
+  /**
+   * Get product family
+   */
   getSPLQ(): void {
-    this.productService.getProductLatest()
+    this.productService.getProductByCategory(this.idLSP)
       .subscribe(
         data => {
           this.spLienQuan = data;

@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateVNPipe } from './pipe/date.pipe';
 import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
-    DateVNPipe,FooterComponent,HeaderComponent
+    FooterComponent,
+    HeaderComponent, 
+    UnauthorizedComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   exports: [
-    DateVNPipe,FooterComponent,HeaderComponent
+    FooterComponent,HeaderComponent, UnauthorizedComponent
   ],
 })
 export class SharedModule { }

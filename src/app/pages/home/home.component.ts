@@ -25,7 +25,10 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.getNews();
   }
 
-  getLatest():void{
+  /**
+   * Get product latest
+   */
+  getLatest():void {
     this.productService.getProductLatest()
     .subscribe(
       data => {
@@ -36,6 +39,11 @@ export class HomeComponent extends BaseComponent implements OnInit {
       error =>{
         console.log(error);}
     )}
+  
+  /**
+   * Get product salest
+   * Author: ChuYen
+   */
   getSalest(): void{
     this.productService.getProductSalest()
     .subscribe(
@@ -45,6 +53,11 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.loadScripts());
       }
     )}
+
+    /**
+     * Get new News
+     * Author: ChuYen 
+     */
   getNews():void{
     this.newsService.getLatest().subscribe(
       data => {
@@ -56,10 +69,5 @@ export class HomeComponent extends BaseComponent implements OnInit {
         console.log(error);
       }
   )}
-  addToCart(it:Product, quantity: any) {
-    let soLuong = Number.parseInt(quantity);
-    let item ={product: it, quantity: soLuong};
-    this._cart.addToCart(item);
-    alert('Thêm sản phẩm vào giỏ hàng thành công!'); 
-  }
+
 }

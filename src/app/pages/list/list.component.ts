@@ -37,13 +37,6 @@ export class ListComponent extends BaseComponent implements OnInit {
     }
     else this.getProductsByCat();
   }
-  
-  addToCart(it:Product, quantity: any) {
-    let soLuong = Number.parseInt(quantity);
-    let item ={product: it, quantity: soLuong};
-    this._cart.addToCart(item);
-    alert('Thêm thành công!'); 
-  }
 
   getAllProduct(): void {
     this.productService.getAll()

@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a [routerLink]="'home'">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="'../home'">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Tất cả sản phẩm</li>
             </ol>
         </div><!-- End .container -->
@@ -45,20 +45,9 @@
                         <div class="row justify-content-center">
                             <div class="col-6 col-md-4 col-lg-4" *ngFor="let item of products">
                                 <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <a [href]="'detail/' + item.id">
-                                            <img src="assets/{{ item.avatarImage }}" alt="{{ item.avatarImage }}" class="product-image">
-                                        </a>
 
-                                        <div class="product-action">
-                                            <a  (click)="addToCart(item, 1)" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></a>
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
+                                    <app-product [product]="item"></app-product>
 
-                                    <div class="product-body">
-                                        <h3 class="product-title"><a href="product.html">{{ item.name }}</a></h3><!-- End .product-title -->
-                                        <div class="product-price">{{ item.price }}VND</div><!-- End .product-price -->
-                                    </div><!-- End .product-body -->
                                 </div><!-- End .product -->
                             </div><!-- End .col-sm-6 col-lg-4 -->
                         </div><!-- End .row -->
@@ -71,7 +60,7 @@
                 <aside class="col-lg-3 order-lg-first">
                     <div class="sidebar sidebar-shop">
                         <div class="widget widget-clean">
-                            <label>Filters:</label>
+                            <label>Bộ lọc:</label>
                             <a href="#" class="sidebar-filter-clear">Clean All</a>
                         </div><!-- End .widget widget-clean -->
 

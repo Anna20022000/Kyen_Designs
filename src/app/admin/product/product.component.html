@@ -1,17 +1,20 @@
+<p-toast position="top-right"></p-toast>
 <div class="m-content">
     <div class="m-title">
         <span>Danh sách sản phẩm</span>
-        <button class="m-btn m-btn-icon m-btn-icon-add" data-toggle="modal" data-target="#myModal"
-            (click)="createMode()">Thêm sản phẩm</button>
+        <div>
+            <button class="m-btn m-btn-icon" data-toggle="modal" data-target="#myModal"
+            (click)="createMode()"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+        </div>
+        
     </div>
     <div class="m-row">
         <div class="m-filter">
             <input placeholder="Tìm kiếm theo mã hoặc tên" class="m-input m-input-search" type="text" [(ngModel)]="nameSearch" (input)="loadPage(1)">
             <div class="m-filter-room">
-                <select class="m-combobox" [(ngModel)]="pageSize" (ngModelChange)="loadPage(1)">
-                    <option value="10" selected>10 bản ghi/ trang</option>
-                    <option value="15">15 bản ghi/ trang</option>
-                    <option value="30">30 bản ghi/ trang</option>
+                <select class="m-combobox" [(ngModel)]="idFilterLSP" (ngModelChange)="filterLSP()">
+                    <option value="0" selected>Tất cả danh mục sản phẩm</option>
+                    <option value="{{item.id}}" *ngFor="let item of categories">{{ item.name }}</option>
                 </select>
             </div>
         </div>
@@ -27,7 +30,7 @@
                     <th>Kích cỡ</th>
                     <th style="width: 8em">Đơn giá (VND)</th>
                     <th style="width: 5.5em">Số lượng</th>
-                    <th style="width: 8em">Loại sản phẩm</th>
+                    <!-- <th style="width: 8em">Loại sản phẩm</th> -->
                     <th class="m-text-center" style="width: 8.5em">Thao tác</th>
                 </tr>
             </thead>
@@ -35,38 +38,40 @@
                 <tr *ngFor="let item of products; let i=index">
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.name }}</td>
-                    <td style="width: 8em"><img src="../../../assets/{{ item.avatarImage}}" alt=""></td>
+                    <td style="width: 6em; padding: 2px"><img src="../../../assets/{{ item.avatarImage}}" alt=""></td>
                     <td style="width: 10%;">{{ item.color }}</td>
                     <td style="width: 8%; text-align: center;">{{ item.size }}</td>
-                    <td class="m-text-right">{{ item.price }}</td>
+                    <td class="m-text-right">{{ item.price | currency: "VND"}}</td>
                     <td class="m-text-right">{{ item.quantity }}</td>
-                    <td class="m-text-center">{{ item.productCategory_Id }}</td>
-                    <td> <button class="m-btn btn-edit"><i class="fas fa-edit" (click)="updateMode(item.id)"></i></button>
-                        <button class="m-btn btn-del" (click)="onDelete(item.id)"><i
+                    <!-- <td class="m-text-center">{{ item.productCategory_Id }}</td> -->
+                    <td> 
+                        <button class="m-btn m-btn-edit"><i class="fas fa-edit" (click)="updateMode(item.id)"></i></button>
+                        <button class="m-btn m-btn-del" (click)="onDelete(item.id)"><i
                                 class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="m-navigation">
-            <div class="m-paging-left" *ngIf="pageSize<=totalItems">
-                Hiển thị {{ pageSize }}/{{ totalItems }} bản ghi
-            </div>
-            <div class="m-paging-left" *ngIf="pageSize>totalItems">
-                Hiển thị {{ totalItems }}/{{ totalItems }} bản ghi
-            </div>
-            <div class="m-paging-center">
-                <nav aria-label="Page navigation">
-                    <ngb-pagination [collectionSize]="totalItems" [pageSize]="pageSize" [(page)]="page" [maxSize]="5" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-                </nav>
-            </div>
-            <div class="m-paging-right">
-                <select class="m-combobox" [(ngModel)]="pageSize" (ngModelChange)="loadPage(1)">
-                    <option value="10">10 bản ghi/ trang</option>
-                    <option value="15">15 bản ghi/ trang</option>
-                    <option value="30">30 bản ghi/ trang</option>
-                </select>
-            </div>
+        
+    </div>
+    <div class="m-navigation">
+        <div class="m-paging-left" *ngIf="pageSize<=totalItems">
+            Hiển thị {{ pageSize }}/{{ totalItems }} bản ghi
+        </div>
+        <div class="m-paging-left" *ngIf="pageSize>totalItems">
+            Hiển thị {{ totalItems }}/{{ totalItems }} bản ghi
+        </div>
+        <div class="m-paging-center">
+            <nav aria-label="Page navigation">
+                <ngb-pagination [collectionSize]="totalItems" [pageSize]="pageSize" [(page)]="page" [maxSize]="5" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            </nav>
+        </div>
+        <div class="m-paging-right">
+            <select class="m-combobox" [(ngModel)]="pageSize" (ngModelChange)="loadPage(1)">
+                <option value="10">10 bản ghi/ trang</option>
+                <option value="15">15 bản ghi/ trang</option>
+                <option value="30">30 bản ghi/ trang</option>
+            </select>
         </div>
     </div>
 </div>
@@ -147,24 +152,29 @@
                                 <div *ngIf="f.description.errors.required">Mô tả sản phẩm không được để trống!</div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputAvt" class="col-form-label col-sm-3">Hình ảnh:</label>
-                            <div class="col-sm-6">
-                                <input type="file" formControlName="avatarImage" class="form-control"
+                        <div class="form-group row" style="position: relative">
+                            <label for="" class="col-form-label col-sm-3">Hình ảnh:</label>
+                            <label for="inputAvt" style="height: 40px; line-height: 40px; padding: 0 0.5em; border: 1px solid #bbbbbb;
+                             position: absolute; top: 10%; right: 1em;">Chọn hình ảnh</label>
+
+                            <div class="col-sm-4" style="display: none">
+                                <input id="inputAvt" type="file" formControlName="avatarImage" class="form-control"
                                 (change)="onFileChange($event)">
-                                <div *ngIf="submitted && f.avatarImage.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && f.avatarImage.errors" class="invalid-feedback">
                                     <div *ngIf="f.avatarImage.errors?.required">File is required.</div>
-                                </div>
+                                </div> -->
                             </div>
-                            <img class="col-sm-4" *ngIf="product && product.avatarImage" src="../../../assets/{{ product.avatarImage }}"
-                                style="position:absolute; top:0px; right:10px;" />
+                            <!-- Hinh anh hien thi -->
+                            <img class="col-sm-4" *ngIf="product && product.avatarImage" src="../../../assets/{{ product.avatarImage }}"/>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default btn-sm" (click)="Reset()">
-                                <i class="fa fa-bell"></i> Làm mới
+                            <button type="button" class="m-btn m-btn-cancel" (click)="Reset()">
+                                <i class="fa fa-undo-alt"></i>
                             </button>
-                            <input type="submit" class="btn btn-success btn-sm btn-submit"  value="Lưu">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button class="m-btn m-btn-cancel m-close-modal" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="m-btn m-btn-icon">
+                                <i class="fas fa-save"></i>Lưu
+                            </button>  
                         </div>
                     </form>
                 </div>

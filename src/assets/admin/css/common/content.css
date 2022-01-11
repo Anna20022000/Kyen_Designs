@@ -1,23 +1,21 @@
 /* ======== main ========= */
 .m-content{
-    width: calc(100% - 245px);
-    height: calc(100vh - 49px);
+    width: calc(100% - 221px);
+    height: 100vh;
     float: left;
-    padding: 0 12px;
+    padding: 0 16px;
 }
+
 .m-content .m-title{
     display: flex;
     justify-content: space-between;
-    height: 48px;
+    height: 40px;
     margin: 12px 0;
 }
 .m-content .m-title span{
     font-size: 24px;
     font-weight: 600;
-    line-height: 48px;
-}
-.m-content .m-title button{
-    margin: 4px 0;
+    line-height: 40px;
 }
 .m-content .m-row{
     display: flex;

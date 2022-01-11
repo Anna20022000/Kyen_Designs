@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/core/base-component';
 import { Category } from 'src/app/models/category';
+import { User } from 'src/app/models/user';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
@@ -11,25 +12,35 @@ import { CategoryService } from 'src/app/services/category.service';
 
 export class HeaderComponent extends BaseComponent implements OnInit {
 
-  items:any;
-  total:any;
-  sum: number =0;
+  items: any;
+  total: any;
+  sum: number = 0;
   categories?: Category[];
 
-  constructor(injector: Injector, private categoryService: CategoryService) { 
+  user: any;
+
+  constructor(injector: Injector, private categoryService: CategoryService) {
     super(injector);
   }
   ngOnInit(): void {
     this.getAllCat();
+    // get Cart
     this._cart.items.subscribe((res) => {
       this.items = res;
       this.total = 0;
-      this.sum = this.items.length;
-      for(let x of this.items){ 
-        x.money = x.quantity * x.product.price;
-        this.total += x.money;
-      } 
+      if (this.items != null) {
+        this.sum = this.items.length;
+        for (let x of this.items) {
+          x.money = x.quantity * x.product.price;
+          this.total += x.money;
+        }
+      }
+
     });
+    // get USer
+    this._user.user.subscribe((us) => {
+      this.user = us;
+    })
   }
 
   getAllCat(): void {
@@ -41,5 +52,13 @@ export class HeaderComponent extends BaseComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  /**
+   * Logout when click button Logout
+   * Author: ChuYen (23/11/2021)
+   */
+  logout() {
+    this._user.logout();
   }
 }

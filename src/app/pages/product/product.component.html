@@ -1,0 +1,14 @@
+<figure class="product-media">
+    <a [routerLink]="['../detail/', product.id]">
+        <img src="assets/{{ product.avatarImage }}" alt="{{ product.avatarImage }}" class="product-image">
+    </a>
+
+    <div class="product-action">
+        <a (click)="addToCart(product, 1)" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></a>
+    </div><!-- End .product-action -->
+</figure><!-- End .product-media -->
+
+<div class="product-body">
+    <h3 class="product-title"><a [routerLink]="['../detail/', product.id]">{{ product.name }}</a></h3><!-- End .product-title -->
+    <div class="product-price">{{ product.price  | currency: "VND"}}</div><!-- End .product-price -->
+</div><!-- End .product-body -->

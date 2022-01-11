@@ -21,7 +21,7 @@
                             <a class="sf-with-ul" [routerLink]="'/list'">Sản phẩm</a>
                             <ul>
                                 <li *ngFor="let item of categories">
-                                    <a [routerLink]="['list/', item.id]">{{ item.name }}</a>
+                                    <a [routerLink]="['/list/', item.id]">{{ item.name }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -49,13 +49,42 @@
                 </div>
                 <!-- End .header-search -->
 
+                <!-- user -->
+                <div class="dropdown cart-dropdown" *ngIf="!user">
+                    <a [routerLink]="['/login']" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" data-display="static">
+                        <i class="icon-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-cart-action">
+                            <a [routerLink]="'/login'" class="btn btn-primary">Đăng nhập</a>
+                            <a [routerLink]="'/register'" class="btn btn-dark">Đăng ký</a>
+                        </div>
+                        <!-- End .dropdown-user -->
+                    </div>
+                </div>
+                <div class="dropdown cart-dropdown" *ngIf="user">
+                    <a [routerLink]="['/account']" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" data-display="static">
+                        <i class="icon-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <p>Xin chào, {{ user.name }}</p>
+                        <div class="dropdown-cart-action">
+                            <a [routerLink]="'/account'" class="btn btn-primary">Tài khoản</a>
+                            <a  [routerLink]="'/login'" (click)="logout()" class="btn btn-dark">Đăng xuất</a>
+                        </div>
+                        <!-- End .dropdown-user -->
+                    </div>
+                </div>
+                <!-- End user -->
+                
                 <div class="dropdown cart-dropdown">
                     <a [routerLink]="['/cart']" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" data-display="static">
                         <i class="icon-shopping-cart"></i>
                         <span class="cart-count">{{ sum }}</span>
                     </a>
-
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-cart-products">
                             <div class="product" *ngFor="let item of items">
@@ -66,7 +95,7 @@
 
                                     <span class="cart-product-info">
                                         <span class="cart-product-qty">{{ item.quantity }}</span>
-                                        x {{ item.product.price }}
+                                        x {{ item.product.price  | currency: "VND"}}
                                     </span>
                                 </div>
                                 <!-- End .product-cart-details -->
@@ -85,7 +114,7 @@
                         <div class="dropdown-cart-total">
                             <span>Tổng:</span>
 
-                            <span class="cart-total-price">{{ total }}VND</span>
+                            <span class="cart-total-price">{{ total | currency: "VND" }}</span>
                         </div>
                         <!-- End .dropdown-cart-total -->
 
@@ -99,6 +128,7 @@
                     <!-- End .dropdown-menu -->
                 </div>
                 <!-- End .cart-dropdown -->
+
             </div>
             <!-- End .header-right -->
         </div>

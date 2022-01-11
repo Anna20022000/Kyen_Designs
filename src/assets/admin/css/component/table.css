@@ -3,30 +3,42 @@
     border: unset;
     border-collapse: collapse;
     width: 100%;
-    /* height: calc(100vh - 200px);
-    overflow: scroll; */
 }
 table.m-table tr{
     height: 48px;
     border-bottom: 1px solid #ddd;
 
 }
+
 table.m-table tbody tr:hover{
-    background-color: #E9EBEE;
+    background-color: #EBF9F4;
 }
+
+table.m-table tr > th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+  }
+  
 table.m-table td, th{
     padding: 0 8px;
     border: none;
 }
 table.m-table tbody tr:nth-child(2n-1){
-    background-color: #e9ebee66;
+    background-color: #E9EBEE;
 }
-/* table.m-table tr td,
-table.m-table tr th:first-child{
-    padding-left: 16px;
-    padding-right: 18px;
-} */
 
-.m-table img{
-    padding: 5px;
-}
+
+/* TABLE EMPLOYEE */
+.m-content-main {
+    margin-top: 12px;
+    height: calc(100% - 177px);
+    overflow-y: scroll;
+  }
+  .m-content-main::-webkit-scrollbar {
+    width: 5px;
+    background-color: #E5E5E5;
+  }
+  .m-content-main::-webkit-scrollbar-thumb {
+    background: #bbbbbb;
+  }

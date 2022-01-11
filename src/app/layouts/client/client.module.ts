@@ -6,6 +6,8 @@ import { ListComponent } from 'src/app/pages/list/list.component';
 import { DetailComponent } from 'src/app/pages/detail/detail.component';
 import { PagesModule } from 'src/app/pages/pages.module';
 import { ShopingModule } from 'src/app/pages/shoping/shoping.module';
+import { AuthGuard } from 'src/app/_hepers/auth.guard';
+import { AccountComponent } from 'src/app/pages/account/profile/account.component';
 
 
 
@@ -21,6 +23,7 @@ import { ShopingModule } from 'src/app/pages/shoping/shoping.module';
       { path: 'list', component: ListComponent},
       { path: 'list/:idlsp', component: ListComponent},
       { path: 'detail/:idsp', component: DetailComponent},
+      { path: 'account/profile', component: AccountComponent, canActivate: [AuthGuard]},
   ]), // Append position
   ]
 })

@@ -53,7 +53,7 @@ export class CategoryComponent extends BaseComponent implements OnInit {
           console.log(error);
         });
   }
-  getProductsByCat(idlsp: number): void {
+  getProductsByCat(idlsp: number) {
     this.productService.getProductByCategory(idlsp)
       .subscribe(
         data => {
@@ -61,10 +61,12 @@ export class CategoryComponent extends BaseComponent implements OnInit {
         }
       )
   }
+
   // CREATE OR EDIT
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
+  // When click button SAVE
   onSubmit(): void {
     this.submitted = true;
 
@@ -78,6 +80,7 @@ export class CategoryComponent extends BaseComponent implements OnInit {
     this.closeModal();
   }
 
+  // Mode when click Update a category
   updateMode(cat: Category) {
     this.isAddMode = false;
     this.category = cat;
@@ -87,15 +90,26 @@ export class CategoryComponent extends BaseComponent implements OnInit {
     });
     $('#myModal').closest('.modal').modal('show');
   }
+
+  // Mode when click Add new a category
   createMode() {
     this.Reset();
     this.isAddMode = true;
   }
+
+  /**
+   * Function delete a category
+   * @param idlsp 
+   * Author: CTKYen (14/11/2021)
+   */
   onDelete(idlsp: any) {
     let id = Number.parseInt(idlsp);
+    
+    this.getProductsByCat(id);
+    
     if (confirm("Bạn muốn xóa danh mục sản phẩm này?")) {
-      this.getProductsByCat(id);
-      if (this.products !== undefined) {
+      console.log(this.products);
+      if (this.products.length > 0) {
         alert("Danh mục này có chứa sản phẩm. Không thể xóa!")
       }
       else {
@@ -105,6 +119,10 @@ export class CategoryComponent extends BaseComponent implements OnInit {
       }
     }
   }
+
+  /**
+   * Function Create a new category
+   */
   onCreate(): void {
     this.category.name = this.form.value.name;
     this.categoryService.create(this.category)
@@ -113,6 +131,10 @@ export class CategoryComponent extends BaseComponent implements OnInit {
         alert('Thêm danh mục sản phẩm thành công!');
       })
   }
+
+  /**
+   * Function UPDATE a category
+   */
   onUpdate(): void {
     this.categoryService.update(this.form.value)
       .pipe(first())
@@ -121,6 +143,7 @@ export class CategoryComponent extends BaseComponent implements OnInit {
       })
   }
 
+  // Function reset form control
   Reset(): void {
     this.submitted = false;
     this.category = {};
@@ -129,6 +152,8 @@ export class CategoryComponent extends BaseComponent implements OnInit {
       name: ['', Validators.required],
     });
   }
+
+  // close Modal
   closeModal() {
     $('#myModal').closest('.modal').modal('hide');
     this.Reset();

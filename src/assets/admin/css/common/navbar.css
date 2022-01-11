@@ -34,16 +34,16 @@
     width: 30px;
     padding: 12px 10px 12px 0;
 }
-.m-navbar .m-menu ul li:hover{
+.m-menu ul li:hover{
     background-color: #e5e5e5;
     color: #000000;
     cursor: pointer;
 }
-.m-navbar .m-menu ul li:focus,
-.m-menu ul li.active{
+.m-menu ul li:focus,
+.m-menu ul li:active{
     background-color: #019160;
 }
-.m-navbar .m-menu ul li:focus a,
-.m-menu ul li.active a{
+.m-menu ul li:focus > *,
+.m-menu ul li:active > *{
     color: #ffffff;
 }

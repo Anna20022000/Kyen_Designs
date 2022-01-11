@@ -7,6 +7,8 @@ import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators
 import { BaseComponent } from 'src/app/core/base-component';
 import { first } from 'rxjs/operators';
 
+import { MessageService } from 'primeng/api';
+
 
 declare var $: any;
 
@@ -14,6 +16,7 @@ declare var $: any;
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['../../layouts/admin/admin.component.css'],
+  providers: [MessageService]
 })
 export class ProductComponent extends BaseComponent implements OnInit {
 
@@ -27,6 +30,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
   public totalItems: any;
 
   public nameSearch: string = "";
+  idFilterLSP: number = 0;
   public isAddMode: any;
 
   form!: FormGroup;
@@ -37,6 +41,8 @@ export class ProductComponent extends BaseComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
+
+    private messageService: MessageService
   ) {
     super(injector);
   }
@@ -56,6 +62,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
 
     this.getAllCat();
     this.loadPage(1);
+
   }
 
   getAllCat(): void {
@@ -121,9 +128,10 @@ export class ProductComponent extends BaseComponent implements OnInit {
               description: [this.product.description, Validators.required],
               quantity: [this.product.quantity, Validators.required],
               price: [this.product.price, Validators.required],
-              productCategory_Id: [, Validators.required],
+              productCategory_Id: [this.product.productCategory_Id, Validators.required],
               avatarImage: [this.product.avatarImage, Validators.required],
             });
+
           },
           error => {
             console.log(error);
@@ -140,7 +148,8 @@ export class ProductComponent extends BaseComponent implements OnInit {
     if (confirm("Bạn muốn xóa sản phẩm này?"))
       if (this.productService.delete(id)
         .pipe(first())
-        .subscribe(() => this.products = this.products.filter(x => x.id !== id))) alert('Xoa thanh cong!');
+        .subscribe(() => this.products = this.products.filter(x => x.id !== id)))
+        this.messageService.add({ severity: 'success', summary: 'Xóa thành công', detail: 'Bạn đã xóa sản phẩm thành công!' });
 
   }
   onCreate(): void {
@@ -149,14 +158,17 @@ export class ProductComponent extends BaseComponent implements OnInit {
     this.productService.create(this.product)
       .pipe(first())
       .subscribe(() => {
-        alert('Thêm sản phẩm thành công!');
+        this.messageService.add({ severity: 'success', summary: 'Thêm thành công', detail: 'Bạn đã thêm sản phẩm thành công!' });
+        this.loadPage(1);
       })
   }
   onUpdate(): void {
     this.productService.update(this.product)
       .pipe(first())
       .subscribe(() => {
-        alert('Cập nhật sản phẩm thành công!');
+        this.messageService.add({ severity: 'success', summary: 'Cập nhật thành công', detail: 'Sản phẩm được cập nhật thành công!' });
+
+        this.loadPage(1);
       })
   }
 
@@ -181,6 +193,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
       avatarImage: ['', Validators.required],
     });
   }
+
   closeModal() {
     $('#myModal').closest('.modal').modal('hide');
     this.Reset();
@@ -192,5 +205,26 @@ export class ProductComponent extends BaseComponent implements OnInit {
         this.products = data.data;
         this.totalItems = data.totalItems;
       });
+  }
+
+  /**
+ * filter product when change category
+ * Author: ChuYen (22/11/2021)
+ */
+  filterLSP() {
+    if (this.idFilterLSP == 0) {
+      this.loadPage(1);
+    }
+    else {
+      this.productService.getProductByCategory(this.idFilterLSP)
+        .subscribe(
+          data => {
+            this.products = data;
+            this.totalItems = this.products.length;
+          },
+          error => {
+            console.log(error);
+          });
+    }
   }
 }

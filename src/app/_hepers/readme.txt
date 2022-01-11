@@ -1,0 +1,1 @@
+- intercept() method to inspect and transform HTTP requests before they are sent to server.

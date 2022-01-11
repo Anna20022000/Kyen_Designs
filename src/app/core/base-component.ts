@@ -5,6 +5,7 @@ import { CartServiceService } from "./cart-service.service";
 import { map } from 'rxjs/operators';
 import { of as observableOf, fromEvent, Subject } from 'rxjs';
 import { CategoryService } from "../services/category.service";
+import { AuthenticationService } from "./authentication.service";
 
 
 export class BaseComponent {
@@ -12,12 +13,14 @@ export class BaseComponent {
   public renderer: Renderer2;
   public _cart: CartServiceService;
   public _route: ActivatedRoute;
+  public _user: AuthenticationService;
 
   constructor(injector: Injector) {
     this.route = injector.get(ActivatedRoute);
     this.renderer = injector.get(Renderer2);
     this._cart = injector.get(CartServiceService);
     this._route = injector.get(ActivatedRoute);
+    this._user = injector.get(AuthenticationService);
   }
 
 
