@@ -1,0 +1,225 @@
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/home">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tài khoản của tôi</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="dashboard">
+            <div class="container" style="position: relative;">
+                <div class="row">
+                    <aside class="col-md-4 col-lg-3" style="position: sticky; top: 0;">
+                        <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Tài khoản của tôi</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="true">Đơn mua</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/login" (click)="logout()">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </aside><!-- End .col-lg-3 -->
+
+                    <div class="col-md-8 col-lg-9">
+                        <div class="tab-content">
+                            <!-- tab account -->
+                            <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
+                                <form  [formGroup]="userForm" (ngSubmit)="updateUser()">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label>Họ và tên *</label>
+                                            <input formControlName="name" type="text" class="form-control col-sm-8"
+                                                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                                <div *ngIf="f.name.errors.required">Tên không được để trống!</div>
+                                            </div>
+                                        </div><!-- End .col-sm-6 -->
+
+                                        <div class="col-sm-6">
+                                            <label>Số điện thoại *</label>
+                                            <input formControlName="phone" type="text" class="form-control col-sm-8"
+                                                [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                                            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                                <div *ngIf="f.phone.errors.required">Số điện thoại không được để trống!
+                                                </div>
+                                            </div>
+                                        </div><!-- End .col-sm-6 -->
+                                    </div><!-- End .row -->
+
+                                    <label>Ngày sinh *</label>
+                                    <input formControlName="dateOfBirth" type="date" class="form-control col-sm-8"
+                                        [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }">
+                                    <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                                        <div *ngIf="f.dateOfBirth.errors.required">Địa chỉ không được để trống!</div>
+                                    </div>
+                                    
+                                    <label>Địa chỉ *</label>
+                                    <input formControlName="address" type="text" class="form-control col-sm-8"
+                                        [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                        <div *ngIf="f.address.errors.required">Địa chỉ không được để trống!</div>
+                                    </div>
+                                    
+                                    <label>Email *</label>
+                                    <input formControlName="email" type="text" class="form-control col-sm-8"
+                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Mail không được để trống!</div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-outline-primary-2">
+                                        <span>Lưu thay đổi</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <!-- end tab account -->
+                            <!-- tab orders -->
+                            <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+                                <div class="col-12">
+                                    <ul class="nav nav-tabs" id="tabs-2" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tab-5-tab" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="true">Tất cả</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="tab-6-tab" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6" aria-selected="false">Chờ xác nhận</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="tab-7-tab" data-toggle="tab" href="#tab-7" role="tab" aria-controls="tab-7" aria-selected="false">Đã giao</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content tab-content-border" id="tab-content-2">
+                                        <div class="tab-pane fade show active" id="tab-5" role="tabpanel" aria-labelledby="tab-5-tab">
+                                            <table class="table table-cart">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center">STT</th>
+                                                        <th style="text-align: center">Sản phẩm</th>
+                                                        <th>Đơn giá</th>
+                                                        <th>Số lượng</th>
+                                                        <th style="width: 17%;">Thành tiền</th>
+                                                        <th>Trạng thái</th>
+                                                    </tr>
+                                                </thead>
+                    
+                                                <tbody>
+                                                    <tr *ngFor="let item of bills; let i=index">
+                                                        <td style="text-align: center">{{ i+1 }}</td>
+                                                        <td class="product-col">
+                                                            <div class="product">
+                                                                <figure class="product-media">
+                                                                    <a href="/detail/">
+                                                                        <img src="assets/{{ item.avatarImage }}" alt="Product image">
+                                                                    </a>
+                                                                </figure>
+                    
+                                                                <h3 class="product-title">
+                                                                    <a href="#"> {{item.productName}}</a>
+                                                                </h3><!-- End .product-title -->
+                                                            </div><!-- End .product -->
+                                                        </td>
+                                                        <td class="price-col">{{  item.priceOrder/item.quantity | currency: "VND"  }}</td>
+                                                        <td class="price-col">{{  item.quantity  }}</td>
+                                                        <td class="total-col">{{ item.priceOrder | currency: "VND" }}</td>
+                                                        <td *ngIf="item.state==1" style="color: green; font-size: 12px;">Đã giao</td>
+                                                        <td *ngIf="item.state==0" style="color:blueviolet; font-size: 12px;">Chờ xác nhận</td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!-- .End .tab-pane -->
+                                        <div class="tab-pane fade" id="tab-6" role="tabpanel" aria-labelledby="tab-6-tab">
+                                            <table class="table table-cart">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center">STT</th>
+                                                        <th style="text-align: center">Sản phẩm</th>
+                                                        <th>Đơn giá</th>
+                                                        <th>Số lượng</th>
+                                                        <th style="width: 17%;">Thành tiền</th>
+                                                        <th>Trạng thái</th>
+                                                    </tr>
+                                                </thead>
+                    
+                                                <tbody>
+                                                    <tr *ngFor="let item of bills; let i=index">
+                                                        <td *ngIf="item.state==0" style="text-align: center">{{ i+1 }}</td>
+                                                        <td *ngIf="item.state==0" class="product-col">
+                                                            <div class="product">
+                                                                <figure class="product-media">
+                                                                    <a href="/detail/">
+                                                                        <img src="assets/{{ item.avatarImage }}" alt="Product image">
+                                                                    </a>
+                                                                </figure>
+                    
+                                                                <h3 class="product-title">
+                                                                    <a href="#"> {{item.productName}}</a>
+                                                                </h3><!-- End .product-title -->
+                                                            </div><!-- End .product -->
+                                                        </td>
+                                                        <td *ngIf="item.state==0" class="price-col">{{  item.priceOrder/item.quantity | currency: "VND"  }}</td>
+                                                        <td *ngIf="item.state==0" class="price-col">{{  item.quantity  }}</td>
+                                                        <td *ngIf="item.state==0" class="total-col">{{ item.priceOrder | currency: "VND" }}</td>
+                                                        <td *ngIf="item.state==0" style="color:blueviolet; font-size: 12px;">Chờ xác nhận</td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!-- .End .tab-pane -->
+                                        <div class="tab-pane fade" id="tab-7" role="tabpanel" aria-labelledby="tab-7-tab">
+                                            <table class="table table-cart">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center">STT</th>
+                                                        <th style="text-align: center">Sản phẩm</th>
+                                                        <th>Đơn giá</th>
+                                                        <th>Số lượng</th>
+                                                        <th style="width: 17%;">Thành tiền</th>
+                                                        <th>Trạng thái</th>
+                                                    </tr>
+                                                </thead>
+                    
+                                                <tbody>
+                                                    <tr *ngFor="let item of bills; let i=index">
+                                                        <td *ngIf="item.state==1" style="text-align: center">{{ i+1 }}</td>
+                                                        <td *ngIf="item.state==1" class="product-col">
+                                                            <div class="product">
+                                                                <figure class="product-media">
+                                                                    <a href="/detail/">
+                                                                        <img src="assets/{{ item.avatarImage }}" alt="Product image">
+                                                                    </a>
+                                                                </figure>
+                    
+                                                                <h3 class="product-title">
+                                                                    <a href="#"> {{item.productName}}</a>
+                                                                </h3><!-- End .product-title -->
+                                                            </div><!-- End .product -->
+                                                        </td>
+                                                        <td *ngIf="item.state==1" class="price-col">{{  item.priceOrder/item.quantity | currency: "VND"  }}</td>
+                                                        <td *ngIf="item.state==1" class="price-col">{{  item.quantity  }}</td>
+                                                        <td *ngIf="item.state==1" class="total-col">{{ item.priceOrder | currency: "VND" }}</td>
+                                                        <td *ngIf="item.state==1" style="color: green; font-size: 12px;">Đã giao</td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!-- .End .tab-pane -->
+                                    </div><!-- End .tab-content -->
+                                </div><!-- End .col-md-6 -->
+                            </div>
+                            <!-- end tab orders -->
+                            <!-- .End .tab-pane -->
+
+                        </div>
+                    </div><!-- End .col-lg-9 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->

@@ -33,8 +33,10 @@ export class ProductComponent extends BaseComponent implements OnInit {
   idFilterLSP: number = 0;
   public isAddMode: any;
 
+
   form!: FormGroup;
   file: any;
+  avatar: any;
 
   constructor(
     injector: Injector,
@@ -65,6 +67,9 @@ export class ProductComponent extends BaseComponent implements OnInit {
 
   }
 
+  /**
+   * Thực hiện lấy tất cả các LSP
+   */
   getAllCat(): void {
     this.categoryService.getAll()
       .subscribe(
@@ -80,6 +85,10 @@ export class ProductComponent extends BaseComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
+  /**
+   * Khi click button LƯU
+   * @returns form nếu form không hợp lệ
+   */
   onSubmit(): void {
     this.submitted = true;
     if (this.form.invalid) {
@@ -111,7 +120,11 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this.loadPage(this.page);
     }
   }
-
+  /**
+   * Khi click button Sửa
+   * Hiển thị form sửa
+   * @param id khóa chính
+   */
   updateMode(id: any) {
     this.isAddMode = false;
     setTimeout(() => {
@@ -139,10 +152,17 @@ export class ProductComponent extends BaseComponent implements OnInit {
     }, 500);
     $('#myModal').closest('.modal').modal('show');
   }
+  /**
+   * Khi click btn Thêm mới
+   */
   createMode() {
     this.Reset();
     this.isAddMode = true;
   }
+  /**
+   * Khi click button Xóa, thực hiện xóa bản ghi trong db
+   * @param id khóa chính bảng sản phẩm
+   */
   onDelete(id: any) {
     let idsp = Number.parseInt(id);
     if (confirm("Bạn muốn xóa sản phẩm này?"))
@@ -152,6 +172,9 @@ export class ProductComponent extends BaseComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Xóa thành công', detail: 'Bạn đã xóa sản phẩm thành công!' });
 
   }
+  /**
+   * Thực hiện Thêm mới
+   */
   onCreate(): void {
     this.product.productCategory_Id = Number.parseInt(this.form.value.productCategory_Id);
     this.product.state = true;
@@ -162,6 +185,9 @@ export class ProductComponent extends BaseComponent implements OnInit {
         this.loadPage(1);
       })
   }
+  /**
+   * Thực hiện Sửa
+   */
   onUpdate(): void {
     this.productService.update(this.product)
       .pipe(first())
@@ -171,16 +197,31 @@ export class ProductComponent extends BaseComponent implements OnInit {
         this.loadPage(1);
       })
   }
-
+  /**
+   * khi input chọn file ảnh có sự thay đổi
+   * @param event sự kiện
+   */
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.file = file;
+      var reader = new FileReader();
+
+      reader.readAsDataURL(file); // read file as data url
+
+      reader.onload = (e:any) => { // called once readAsDataURL is completed
+        this.avatar = e.target.result;
+      }
     }
   }
 
+  /**
+   * reset form
+   * Author: ChuYen (20/10/2021)
+   */
   Reset(): void {
     this.submitted = false;
+    this.avatar = null;
     this.product = {};
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -194,11 +235,17 @@ export class ProductComponent extends BaseComponent implements OnInit {
     });
   }
 
+  /**
+   * Đóng form modal
+   */
   closeModal() {
     $('#myModal').closest('.modal').modal('hide');
     this.Reset();
   }
-
+  /**
+   * Tìm kiếm và phân trang
+   * @param page số trang
+   */
   loadPage(page: number) {
     this.productService.search(page, this.pageSize, this.nameSearch).subscribe(
       data => {

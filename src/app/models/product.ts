@@ -14,4 +14,5 @@ export class Product {
     soLuongBan ?: number;
     tongThu ?: number;
     category?: Category;
+    categoryName?: string;
 }

@@ -24,26 +24,26 @@
             <thead class="m-text-left">
                 <tr>
                     <th style="width: 1.5em">STT</th>
-                    <th>Tên sản phẩm</th>
                     <th class="m-text-center">Hình ảnh</th>
-                    <th style="width: 8em">Màu sắc</th>
+                    <th>Tên sản phẩm</th>
+                    <th style="width: 10%">Loại sản phẩm</th>
+                    <th style="width: 10%">Màu sắc</th>
                     <th>Kích cỡ</th>
-                    <th style="width: 8em">Đơn giá (VND)</th>
                     <th style="width: 5.5em">Số lượng</th>
-                    <!-- <th style="width: 8em">Loại sản phẩm</th> -->
+                    <th style="width: 10%; text-align: right;">Đơn giá (VND)</th>
                     <th class="m-text-center" style="width: 8.5em">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of products; let i=index">
                     <td>{{ i + 1 }}</td>
-                    <td>{{ item.name }}</td>
                     <td style="width: 6em; padding: 2px"><img src="../../../assets/{{ item.avatarImage}}" alt=""></td>
-                    <td style="width: 10%;">{{ item.color }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.categoryName }}</td>
+                    <td>{{ item.color }}</td>
                     <td style="width: 8%; text-align: center;">{{ item.size }}</td>
+                    <td class="m-text-right" style="text-align: center">{{ item.quantity }}</td>
                     <td class="m-text-right">{{ item.price | currency: "VND"}}</td>
-                    <td class="m-text-right">{{ item.quantity }}</td>
-                    <!-- <td class="m-text-center">{{ item.productCategory_Id }}</td> -->
                     <td> 
                         <button class="m-btn m-btn-edit"><i class="fas fa-edit" (click)="updateMode(item.id)"></i></button>
                         <button class="m-btn m-btn-del" (click)="onDelete(item.id)"><i
@@ -160,12 +160,11 @@
                             <div class="col-sm-4" style="display: none">
                                 <input id="inputAvt" type="file" formControlName="avatarImage" class="form-control"
                                 (change)="onFileChange($event)">
-                                <!-- <div *ngIf="submitted && f.avatarImage.errors" class="invalid-feedback">
-                                    <div *ngIf="f.avatarImage.errors?.required">File is required.</div>
-                                </div> -->
                             </div>
+                            
+                            <img class="col-sm-4" *ngIf="avatar" [src]="avatar"/>
                             <!-- Hinh anh hien thi -->
-                            <img class="col-sm-4" *ngIf="product && product.avatarImage" src="../../../assets/{{ product.avatarImage }}"/>
+                            <img class="col-sm-4" *ngIf="product && product.avatarImage && !avatar" src="../../../assets/{{ product.avatarImage }}"/>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="m-btn m-btn-cancel" (click)="Reset()">

@@ -20,7 +20,7 @@ export class CategoryComponent extends BaseComponent implements OnInit {
   submitted: boolean = false;
   categories!: Category[];
 
-  products!: Product[];
+  products: Product[] = [];
   public isAddMode: any;
 
   form!: FormGroup;
@@ -53,8 +53,8 @@ export class CategoryComponent extends BaseComponent implements OnInit {
           console.log(error);
         });
   }
-  getProductsByCat(idlsp: number) {
-    this.productService.getProductByCategory(idlsp)
+  async getProductsByCat(idlsp: number) {
+    await this.productService.getProductByCategory(idlsp)
       .subscribe(
         data => {
           this.products = data;
@@ -102,15 +102,14 @@ export class CategoryComponent extends BaseComponent implements OnInit {
    * @param idlsp 
    * Author: CTKYen (14/11/2021)
    */
-  onDelete(idlsp: any) {
+  async onDelete(idlsp: any) {
     let id = Number.parseInt(idlsp);
     
-    this.getProductsByCat(id);
+    await this.getProductsByCat(id);
     
     if (confirm("Bạn muốn xóa danh mục sản phẩm này?")) {
-      console.log(this.products);
       if (this.products.length > 0) {
-        alert("Danh mục này có chứa sản phẩm. Không thể xóa!")
+        alert("Không thể xóa danh mục đã có phát sinh. Vui lòng kiểm tra lại!")
       }
       else {
         if (this.categoryService.delete(id)

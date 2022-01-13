@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './shoping/cart/cart.component';
 import { NgbAlertModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductComponent } from './product/product.component';
-import { AccountComponent } from './account/profile/account.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { AccountComponent } from './account/profile/account.component';
     HomeComponent,
     DetailComponent,
     ProductComponent,
-    AccountComponent
+    AccountComponent,
   ],
   imports: [
     CommonModule,

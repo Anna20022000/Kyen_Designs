@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/core/base-component';
 import { User } from 'src/app/models/user';
 
@@ -9,7 +10,7 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent extends BaseComponent implements OnInit {
-  items:any;
+  items:any[] =[];
   total:any;
 
   orderForm !: FormGroup;
@@ -22,7 +23,7 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
   error : string = "";
 
   
-  constructor(injector: Injector, 
+  constructor(injector: Injector, private router: Router,
     private formBuilder: FormBuilder,)
     { 
     super(injector);
@@ -86,5 +87,6 @@ export class CheckoutComponent extends BaseComponent implements OnInit {
     console.log(this.orderForm.value);
     this._cart.pay(this.orderForm.value);
 
+    this.router.navigate(['/home']);
   }
 }

@@ -4,10 +4,10 @@
             <img src="../../../assets/admin/content/img/toggle.png" alt="">
         </div>
         <div class="m-logo">
-            <img src="../../../assets/admin/content/cukcuk-logo.png" alt="">
+            <img src="../../../assets/images/Logo/logo.png" alt="">
         </div>
     </div>
-    <div class="m-menu">
+    <div class="m-menu" style="position: relative;">
         <ul>
             <li>
                 <a [routerLink]="'admin'">
@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li class="">
-                <a [routerLink]="['admin/report']" routerLinkActive="router-link-active">
+                <a [routerLink]="['admin']" routerLinkActive="router-link-active">
                     <div class="m-icon-submenu">
                         <img src="../../../assets/admin/content/icon/dic-employee.png" alt="">
                     </div>
@@ -50,14 +50,17 @@
                 </a>
             </li>
             <li>
-                <a [routerLink]="['admin/setting']" routerLinkActive="router-link-active">
+                <a [routerLink]="['/login']" routerLinkActive="router-link-active" (click)="logout()">
                     <div class="m-icon-submenu">
                         <img src="../../../assets/admin/content/icon/setting.png" alt="">
                     </div>
-                    <div class="m-name-submenu">Thiết lập hệ thống</div>
+                    <div class="m-name-submenu">Đăng xuất</div>
                 </a>
             </li>
         </ul>
+        <div style="position: fixed; bottom: 0; left: 30px; border-top: 1px solid #bbbbbb; text-align: center; height: 3.5em; line-height: 3.5em;">
+           Đang đăng nhập bởi Admin
+        </div>
     </div>
 </div>
 <div class="m-main">

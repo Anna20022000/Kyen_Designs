@@ -7,7 +7,7 @@ import { DetailComponent } from 'src/app/pages/detail/detail.component';
 import { PagesModule } from 'src/app/pages/pages.module';
 import { ShopingModule } from 'src/app/pages/shoping/shoping.module';
 import { AuthGuard } from 'src/app/_hepers/auth.guard';
-import { AccountComponent } from 'src/app/pages/account/profile/account.component';
+import { AccountComponent } from 'src/app/pages/account/account.component';
 
 
 
