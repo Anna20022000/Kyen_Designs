@@ -19,10 +19,13 @@ export class CartComponent extends BaseComponent implements OnInit {
     this._cart.items.subscribe((res) => {
       this.items = res;
       this.total = 0;
-      for(let x of this.items){ 
-        x.money = x.quantity * x.product.price;
-        this.total += x.money;
-      } 
+      if(this.items){
+        for(let x of this.items){ 
+          x.money = x.quantity * x.product.price;
+          this.total += x.money;
+        }
+      }
+       
     });
   } 
   clearCart() { 

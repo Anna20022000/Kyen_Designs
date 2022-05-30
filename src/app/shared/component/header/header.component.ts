@@ -28,7 +28,8 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     this._cart.items.subscribe((res) => {
       this.items = res;
       this.total = 0;
-      if (this.items != null) {
+      this.sum = 0;
+      if (this.items && this.items != null) {
         this.sum = this.items.length;
         for (let x of this.items) {
           x.money = x.quantity * x.product.price;
